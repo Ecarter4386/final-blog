@@ -1,13 +1,18 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Content:</strong>
-  <%= @post.content %>
+  <strong>Title:</strong>
+  <%= @post.title %>
 </p>
+
+<div class="well">
+	<p><%= @post.content.html_safe %>
+	</p>
+</div>
 
 <p>
   <strong>User:</strong>
-  <%= @post.user_id %>
+  <%= @post.user.email %>
 </p>
 
 <%= link_to 'Edit', edit_post_path(@post) %> |
