@@ -11,7 +11,9 @@
     </div>
   <% end %>
 
- 
+  <div class="form-group">
+    <%= form.text_area :content, placeholder: "Entry", class: "form-control" %>
+  </div>
 
   <div class="field">
     <%= form.hidden_field :user_id, value: current_user.id %>
