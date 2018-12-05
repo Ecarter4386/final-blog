@@ -15,5 +15,7 @@
   <%= @post.user.email %>
 </p>
 
+<% if user_signed_in? && (current_user.id == @post.user_id) %>
 <%= link_to 'Edit', edit_post_path(@post) %> |
+<% end %>
 <%= link_to 'Back', posts_path %>
