@@ -1,13 +1,22 @@
 <p id="notice"><%= notice %></p>
 
 <% @posts.each do |post| %>
-  <div class="col-md-10 col-md-offset-1">
-    <h3><%= post.user.email %> | <small><%= time_ago_in_words post.created_at %></small></h3>
-    <p><%= post.content %></p>
-    <% if user_signed_in? && (current_user.id == post.user_id) %>
-      <%= link_to 'Edit', edit_post_path(post), class: 'btn btn-default' %>
-      <%= link_to 'Delete', post, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-default' %>
-    <% end %>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h1><%= link_to post.title, post, class: "panel-title" %></h1>
+      <p><strong><%= link_to post.user.email %></strong></p>
+      <p><%= post.created_at.strftime("%I:%M %p %m/%d/%Y") %></p>
+    </div>
+    <div class="panel-body">
+      <p><%= post.content[0..1000] %> (<%= link_to 'Read More', post %>)</p>
+      <div class="btn-group btn-group-justified" role="group" aria-label="...">
+        <%= link_to 'Show', post, class: "btn btn-info" %>
+        <% if user_signed_in? && (current_user.id == post.user_id) %>
+          <%= link_to 'Edit', edit_post_path(post), class: "btn btn-warning" %>
+          <%= link_to 'Delete', post, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+        <% end %>
+      </div>
+    </div>
   </div>
 <% end %>
 
